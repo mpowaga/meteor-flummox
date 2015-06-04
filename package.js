@@ -5,9 +5,15 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  Npm.depends({
-    flummox: '3.5.2'
-  });
+  api.use('reactjs:react');
 
+  api.addFiles('flummox.bundle.js');
 
+  api.addFiles('addons/router.js');
+  api.addFiles('addons/router-client.js', 'client');
+  api.addFiles('addons/router-server.js', 'server');
+
+  api.export('Flummox');
+  api.export('FluxComponent');
+  api.export('MeteorFlummox');
 });
