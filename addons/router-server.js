@@ -21,7 +21,7 @@ getBoilerplate = function (req, markup, serializedState) {
   var script = '<script type="text/javascript">' +
     '\n  FLUMMOX_SERIALIZED_STATE = \'' + serializedState.split('\\').join('\\\\') + '\';' +
     '\n</script>';
-  var outro = '<body>' + markup + '</body></html>';
+  var outro = '<body><div id="__FlummoxMeteor_root">' + markup + '</div></body></html>';
 
   return intro + script + outro;
 };
