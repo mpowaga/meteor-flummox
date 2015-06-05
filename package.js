@@ -15,5 +15,5 @@ Package.onUse(function (api) {
 
   api.export('Flummox');
   api.export('FluxComponent');
-  api.export('MeteorFlummox');
+  api.export('FlummoxMeteor');
 });
