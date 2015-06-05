@@ -1,6 +1,11 @@
 FlummoxMeteor._runReactRouterImpl = function (routes, Flux) {
   WebApp.connectHandlers.use(function (req, res, next) {
-    ReactRouter.run(routes, req.url, function (Root) {
+    ReactRouter.run(routes, req.url, function (Root, state) {
+      if (isNotFound(state.routes)) {
+        res.statusCode = 404;
+        return res.end('Not found');
+      }
+
       var Handler = React.createFactory(Root);
       var flux = new Flux();
       var markup = React.renderToString(Handler({ flux: flux }));
@@ -19,4 +24,10 @@ getBoilerplate = function (req, markup, serializedState) {
   var outro = '<body>' + markup + '</body></html>';
 
   return intro + script + outro;
+};
+
+isNotFound = function (routes) {
+  return _.some(routes, function (route) {
+    return route.isNotFound;
+  });
 };
